@@ -1,6 +1,7 @@
 # MealsApp
 
-A Flutter mobile application for selecting meals
+A Flutter mobile application for selecting meals.  
+Created to explore navigation in Flutter
 
 ## Getting Started
 
