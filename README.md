@@ -1,4 +1,4 @@
-# meals_app
+# MealsApp
 
 A Flutter mobile application for selecting meals
 
