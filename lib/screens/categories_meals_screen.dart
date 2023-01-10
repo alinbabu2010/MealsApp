@@ -24,7 +24,15 @@ class CategoriesMealsScreen extends StatelessWidget {
       ),
       body: ListView.builder(
         itemBuilder: (context, index) {
-          return MealItem(meals: categoryMeals[index]);
+          final meal = categoryMeals[index];
+          return MealItem(
+            id: meal.id,
+            title: meal.title,
+            imageUrl: meal.imageUrl,
+            affordability: meal.affordability,
+            complexity: meal.complexity,
+            duration: meal.duration,
+          );
         },
         itemCount: categoryMeals.length,
       ),
