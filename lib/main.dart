@@ -33,10 +33,10 @@ class MyApp extends StatelessWidget {
             ),
       ),
       //home: const CategoriesScreen(),
-      initialRoute: '/',
+      initialRoute: TabsScreen.routeName,
       debugShowCheckedModeBanner: false,
       routes: {
-        '/': (context) => const TabsScreen(),
+        TabsScreen.routeName: (context) => const TabsScreen(),
         CategoriesMealsScreen.routeName: (context) =>
             const CategoriesMealsScreen(),
         MealDetailsScreen.routeName: (context) => const MealDetailsScreen()
