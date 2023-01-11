@@ -79,9 +79,9 @@ class MealDetailsScreen extends StatelessWidget {
                       children: [
                         ListTile(
                           leading: CircleAvatar(
-                            child: Text("# ${index + 1}"),
                             backgroundColor:
                                 Theme.of(context).colorScheme.primary,
+                            child: Text("# ${index + 1}"),
                           ),
                           title: Text(selectedMeal.steps[index]),
                         ),
@@ -93,6 +93,12 @@ class MealDetailsScreen extends StatelessWidget {
                 ))
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.delete),
+        onPressed: () {
+          Navigator.of(context).pop(mealId);
+        },
       ),
     );
   }
