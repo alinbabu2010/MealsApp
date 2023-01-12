@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meals_app/models/meal.dart';
 import 'package:meals_app/screens/meal_detail_screen.dart';
+import 'package:meals_app/util/dimens.dart';
 
 class MealItem extends StatelessWidget {
   final String id;
@@ -61,42 +62,51 @@ class MealItem extends StatelessWidget {
     });
   }
 
+  Row buildRow(
+    String text,
+    IconData icon,
+  ) {
+    return Row(
+      children: [
+        Icon(icon),
+        const SizedBox(
+          width: mealItemBuildRowSizedBoxWidth,
+        ),
+        Text(text)
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => selectMeal(context),
       child: Card(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: mealItemCardBorderRadius,
         ),
-        elevation: 4,
-        margin: const EdgeInsets.all(10),
+        elevation: mealItemCardElevation,
+        margin: mealItemCardMargin,
         child: Column(
           children: [
             Stack(
               children: [
                 ClipRRect(
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(15),
-                    topRight: Radius.circular(15),
-                  ),
+                  borderRadius: mealItemClipRRectBorderRadius,
                   child: Image.network(
                     imageUrl,
-                    height: 250,
+                    height: mealItemImageHeight,
                     width: double.infinity,
                     fit: BoxFit.cover,
                   ),
                 ),
                 Positioned(
-                  bottom: 20,
-                  right: 10,
+                  bottom: mealItemBottomPositioned,
+                  right: mealItemRightPositioned,
                   child: Container(
-                    width: 300,
+                    width: mealItemPositionedContainerWidth,
                     color: Colors.black54,
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 5,
-                      horizontal: 20,
-                    ),
+                    padding: mealItemPositionedContainerPadding,
                     child: Text(
                       title,
                       style: const TextStyle(
@@ -111,37 +121,13 @@ class MealItem extends StatelessWidget {
               ],
             ),
             Padding(
-              padding: const EdgeInsets.all(20),
+              padding: mealItemPaddingWidgetPadding,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Row(
-                    children: [
-                      const Icon(Icons.schedule),
-                      const SizedBox(
-                        width: 6,
-                      ),
-                      Text("$duration min")
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      const Icon(Icons.work),
-                      const SizedBox(
-                        width: 6,
-                      ),
-                      Text(complexityText)
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      const Icon(Icons.attach_money),
-                      const SizedBox(
-                        width: 6,
-                      ),
-                      Text(affordabilityText)
-                    ],
-                  ),
+                  buildRow("$duration min", Icons.schedule),
+                  buildRow(complexityText, Icons.work),
+                  buildRow(affordabilityText, Icons.attach_money),
                 ],
               ),
             )

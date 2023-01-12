@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:meals_app/util/constants.dart';
+import 'package:meals_app/util/dimens.dart';
 import 'package:meals_app/widgets/main_drawer.dart';
 
 class FiltersScreen extends StatefulWidget {
@@ -25,10 +27,10 @@ class _FiltersScreenState extends State<FiltersScreen> {
   @override
   void initState() {
     super.initState();
-    _glutenFree = widget.filters['Gluten']!;
-    _vegetarian = widget.filters['Vegetarian']!;
-    _vegan = widget.filters['Vegan']!;
-    _lactoseFree = widget.filters['Lactose']!;
+    _glutenFree = widget.filters[gluten]!;
+    _vegetarian = widget.filters[vegetarian]!;
+    _vegan = widget.filters[vegan]!;
+    _lactoseFree = widget.filters[lactose]!;
   }
 
   SwitchListTile buildSwitchListTile(
@@ -50,15 +52,15 @@ class _FiltersScreenState extends State<FiltersScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Your Filters"),
+        title: const Text(yourFiltersText),
         actions: [
           IconButton(
             onPressed: () {
               final filters = {
-                'Gluten': _glutenFree,
-                'Lactose': _lactoseFree,
-                'Vegan': _vegan,
-                'Vegetarian': _vegetarian,
+                gluten: _glutenFree,
+                lactose: _lactoseFree,
+                vegan: _vegan,
+                vegetarian: _vegetarian,
               };
               widget.saveFilters(filters);
             },
@@ -70,9 +72,9 @@ class _FiltersScreenState extends State<FiltersScreen> {
       body: Column(
         children: [
           Container(
-            padding: const EdgeInsets.all(10),
+            padding: filterScreenContainerPadding,
             child: Text(
-              'Adjust your meal selection',
+              adjustMealSelectionText,
               style: Theme.of(context).textTheme.titleMedium,
             ),
           ),
@@ -80,32 +82,32 @@ class _FiltersScreenState extends State<FiltersScreen> {
             child: ListView(
               children: [
                 buildSwitchListTile(
-                  "Gluten-free",
-                  'Only include gluten-free meals.',
+                  glutenFree,
+                  glutenFreeDesc,
                   _glutenFree,
                   (isGlutenFree) {
                     setState(() => _glutenFree = isGlutenFree);
                   },
                 ),
                 buildSwitchListTile(
-                  "Lactose-free",
-                  'Only include lactose-free meals.',
+                  lactose,
+                  lactoseFree,
                   _lactoseFree,
                   (isLactoseFree) {
                     setState(() => _lactoseFree = isLactoseFree);
                   },
                 ),
                 buildSwitchListTile(
-                  "Vegetarian",
-                  'Only include vegetarian meals.',
+                  vegetarian,
+                  vegetarianDesc,
                   _vegetarian,
                   (isVegetarian) {
                     setState(() => _vegetarian = isVegetarian);
                   },
                 ),
                 buildSwitchListTile(
-                  "Vegan",
-                  'Only include vegan meals.',
+                  vegan,
+                  veganDesc,
                   _vegan,
                   (isVegan) {
                     setState(() => _vegan = isVegan);

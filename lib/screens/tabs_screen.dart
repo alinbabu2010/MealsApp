@@ -4,6 +4,8 @@ import 'package:meals_app/screens/categories_screen.dart';
 import 'package:meals_app/screens/favorites_screen.dart';
 import 'package:meals_app/widgets/main_drawer.dart';
 
+import '../util/constants.dart';
+
 class TabsScreen extends StatefulWidget {
   static const routeName = '/';
   final List<Meal> favoriteMeals;
@@ -15,9 +17,6 @@ class TabsScreen extends StatefulWidget {
 }
 
 class _TabsScreenState extends State<TabsScreen> {
-  static const page = "page";
-  static const title = "title";
-
   late List<Map<String, Object>> _pages;
 
   @override
@@ -26,11 +25,11 @@ class _TabsScreenState extends State<TabsScreen> {
     _pages = [
       {
         page: const CategoriesScreen(),
-        title: 'Categories',
+        title: categories,
       },
       {
         page: FavoritesScreen(favoriteMeals: widget.favoriteMeals),
-        title: 'Your Favorite',
+        title: yourFavoritesText,
       }
     ];
   }
@@ -60,14 +59,14 @@ class _TabsScreenState extends State<TabsScreen> {
         items: [
           BottomNavigationBarItem(
             icon: const Icon(Icons.category),
-            label: 'Categories',
+            label: categories,
             // Add separate backgroundColor for BottomNavigationBarItem
             // if type: BottomNavigationBarType.shifting
             backgroundColor: Theme.of(context).colorScheme.primary,
           ),
           BottomNavigationBarItem(
             icon: const Icon(Icons.star),
-            label: 'Favorites',
+            label: favorite,
             backgroundColor: Theme.of(context).colorScheme.primary,
           ),
         ],

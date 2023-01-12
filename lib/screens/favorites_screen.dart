@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meals_app/util/constants.dart';
 
 import '../models/meal.dart';
 import '../widgets/meal_item.dart';
@@ -24,7 +25,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
   Widget build(BuildContext context) {
     if (widget.favoriteMeals.isEmpty) {
       return const Center(
-        child: Text('You have no favorites yet - add some!'),
+        child: Text(noFavoriteMessage),
       );
     } else {
       return ListView.builder(

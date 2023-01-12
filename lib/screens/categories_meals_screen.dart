@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meals_app/util/constants.dart';
 import 'package:meals_app/widgets/meal_item.dart';
 
 import '../models/meal.dart';
@@ -24,9 +25,12 @@ class _CategoriesMealsScreenState extends State<CategoriesMealsScreen> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     final routeArgs =
-        ModalRoute.of(context)?.settings.arguments as Map<String, String>;
-    final categoryId = routeArgs['id'].toString();
-    categoryTitle = routeArgs['title'].toString();
+    ModalRoute
+        .of(context)
+        ?.settings
+        .arguments as Map<String, String>;
+    final categoryId = routeArgs[navArgId].toString();
+    categoryTitle = routeArgs[navArgTitle].toString();
     categoryMeals = widget.availableMeals.where((meal) {
       return meal.categories.contains(categoryId);
     }).toList();

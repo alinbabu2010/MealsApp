@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meals_app/screens/filters_screen.dart';
+import 'package:meals_app/util/constants.dart';
+import 'package:meals_app/util/dimens.dart';
 
 class MainDrawer extends StatelessWidget {
   const MainDrawer({Key? key}) : super(key: key);
@@ -32,24 +34,24 @@ class MainDrawer extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            height: 120,
+            height: mainDrawerContainerHeight,
             width: double.infinity,
-            padding: const EdgeInsets.all(20),
+            padding: mainDrawerContainerPadding,
             alignment: Alignment.centerLeft,
             color: Theme.of(context).colorScheme.secondary,
             child: Text(
-              'Cooking Up!',
+              cookingUp,
               style: TextStyle(
                   fontWeight: FontWeight.w900,
                   fontSize: 30,
                   color: Theme.of(context).colorScheme.primary),
             ),
           ),
-          const SizedBox(height: 20),
-          buildDrawerList(Icons.restaurant, "Meals", () {
+          const SizedBox(height: mainDrawerSizedBoxHeight),
+          buildDrawerList(Icons.restaurant, meals, () {
             Navigator.of(context).pushReplacementNamed('/');
           }),
-          buildDrawerList(Icons.settings, "Filter", () {
+          buildDrawerList(Icons.settings, filter, () {
             Navigator.of(context).pushReplacementNamed(FiltersScreen.routeName);
           })
         ],
