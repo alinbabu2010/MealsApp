@@ -14,13 +14,13 @@ class MainDrawer extends StatelessWidget {
     return ListTile(
       leading: Icon(
         icon,
-        size: 26,
+        size: mainDrawerListTitleIconSize,
       ),
       title: Text(
         title,
         style: const TextStyle(
-          fontFamily: 'RobotoCondensed',
-          fontSize: 24,
+          fontFamily: robotoCondensed,
+          fontSize: mainDrawerListTitleFontSize,
           fontWeight: FontWeight.bold,
         ),
       ),
@@ -43,7 +43,7 @@ class MainDrawer extends StatelessWidget {
               cookingUp,
               style: TextStyle(
                   fontWeight: FontWeight.w900,
-                  fontSize: 30,
+                  fontSize: mainDrawerContainerTextSize,
                   color: Theme.of(context).colorScheme.primary),
             ),
           ),

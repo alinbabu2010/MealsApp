@@ -25,11 +25,15 @@ const mealDetailIngredientCardPadding = EdgeInsets.symmetric(
 
 // CategoryItem
 var categoryItemBorderRadius = BorderRadius.circular(15);
+const categoryItemPadding = EdgeInsets.all(15);
 
 // MainDrawer
 const mainDrawerContainerPadding = EdgeInsets.all(20);
 const double mainDrawerContainerHeight = 120;
 const double mainDrawerSizedBoxHeight = 20;
+const double mainDrawerListTitleFontSize = 20;
+const double mainDrawerContainerTextSize = 30;
+const double mainDrawerListTitleIconSize = 26;
 
 // MealItem
 var mealItemCardBorderRadius = BorderRadius.circular(15);
@@ -49,3 +53,6 @@ const mealItemPositionedContainerPadding = EdgeInsets.symmetric(
 );
 const mealItemPaddingWidgetPadding = EdgeInsets.all(20);
 const double mealItemBuildRowSizedBoxWidth = 6;
+const double mealItemPositionedTextSize = 26;
+
+const double textThemeFontSize = 20;

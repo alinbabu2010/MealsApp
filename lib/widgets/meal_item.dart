@@ -110,7 +110,7 @@ class MealItem extends StatelessWidget {
                     child: Text(
                       title,
                       style: const TextStyle(
-                        fontSize: 26,
+                        fontSize: mealItemPositionedTextSize,
                         color: Colors.white,
                       ),
                       softWrap: true,

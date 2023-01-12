@@ -1,3 +1,4 @@
+const appName = 'DeliMeals';
 const navArgId = 'id';
 const navArgTitle = 'title';
 const noFavoriteMessage = 'You have no favorites yet - add some!';
@@ -23,3 +24,5 @@ const yourFavoritesText = 'Your Favorite';
 const cookingUp = 'Cooking Up!';
 const meals = 'Meals';
 const filter = 'Filter';
+const robotoCondensed = 'RobotoCondensed';
+const raleway = 'Raleway';

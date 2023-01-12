@@ -4,6 +4,8 @@ import 'package:meals_app/screens/categories_meals_screen.dart';
 import 'package:meals_app/screens/filters_screen.dart';
 import 'package:meals_app/screens/meal_detail_screen.dart';
 import 'package:meals_app/screens/tabs_screen.dart';
+import 'package:meals_app/util/constants.dart';
+import 'package:meals_app/util/dimens.dart';
 
 import 'models/meal.dart';
 
@@ -20,29 +22,29 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   Map<String, bool> _filters = {
-    'Gluten': false,
-    'Lactose': false,
-    'Vegan': false,
-    'Vegetarian': false,
+    gluten: false,
+    lactose: false,
+    vegan: false,
+    vegetarian: false,
   };
 
   List<Meal> _availableMeals = dummyMeals;
-  List<Meal> _favoritedMeals = [];
+  final List<Meal> _favoritedMeals = [];
 
   void _setFilters(Map<String, bool> filterData) {
     setState(() {
       _filters = filterData;
       _availableMeals = dummyMeals.where((meal) {
-        if (_filters['Gluten']! && !meal.isGlutenFree) {
+        if (_filters[gluten]! && !meal.isGlutenFree) {
           return false;
         }
-        if (_filters['Lactose']! && !meal.isLactoseFree) {
+        if (_filters[lactose]! && !meal.isLactoseFree) {
           return false;
         }
-        if (_filters['Vegan']! && !meal.isVegan) {
+        if (_filters[vegan]! && !meal.isVegan) {
           return false;
         }
-        if (_filters['Vegetarian']! && !meal.isVegetarian) {
+        if (_filters[vegetarian]! && !meal.isVegetarian) {
           return false;
         }
         return true;
@@ -70,21 +72,21 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'DeliMeals',
+      title: appName,
       theme: ThemeData(
         colorScheme: const ColorScheme.light(
           primary: Colors.pinkAccent,
           secondary: Colors.amber,
         ),
         canvasColor: const Color.fromRGBO(255, 254, 229, 1),
-        fontFamily: 'Raleway',
+        fontFamily: raleway,
         indicatorColor: Colors.amberAccent,
         textTheme: ThemeData().textTheme.copyWith(
               bodyMedium: const TextStyle(color: Color.fromRGBO(20, 51, 51, 1)),
               bodySmall: const TextStyle(color: Color.fromRGBO(20, 51, 51, 1)),
               titleMedium: const TextStyle(
-                fontSize: 20,
-                fontFamily: 'Roboto Condensed',
+                fontSize: textThemeFontSize,
+                fontFamily: robotoCondensed,
                 fontWeight: FontWeight.bold,
               ),
             ),
