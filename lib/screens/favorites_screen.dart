@@ -3,22 +3,33 @@ import 'package:flutter/material.dart';
 import '../models/meal.dart';
 import '../widgets/meal_item.dart';
 
-class FavoritesScreen extends StatelessWidget {
+class FavoritesScreen extends StatefulWidget {
   final List<Meal> favoriteMeals;
 
   const FavoritesScreen({Key? key, required this.favoriteMeals})
       : super(key: key);
 
   @override
+  State<FavoritesScreen> createState() => _FavoritesScreenState();
+}
+
+class _FavoritesScreenState extends State<FavoritesScreen> {
+  void _removeMeal(String id) {
+    setState(() {
+      widget.favoriteMeals.removeWhere((meal) => meal.id == id);
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    if (favoriteMeals.isEmpty) {
+    if (widget.favoriteMeals.isEmpty) {
       return const Center(
         child: Text('You have no favorites yet - add some!'),
       );
     } else {
       return ListView.builder(
         itemBuilder: (context, index) {
-          final meal = favoriteMeals[index];
+          final meal = widget.favoriteMeals[index];
           return MealItem(
             id: meal.id,
             title: meal.title,
@@ -26,9 +37,10 @@ class FavoritesScreen extends StatelessWidget {
             affordability: meal.affordability,
             complexity: meal.complexity,
             duration: meal.duration,
+            removeItem: _removeMeal,
           );
         },
-        itemCount: favoriteMeals.length,
+        itemCount: widget.favoriteMeals.length,
       );
     }
   }

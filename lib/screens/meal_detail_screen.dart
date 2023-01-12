@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import '../data/dummy_meals.dart';
@@ -7,8 +9,7 @@ class MealDetailsScreen extends StatelessWidget {
   final Function toggleFavorite;
   final Function isFavorite;
 
-  const MealDetailsScreen(
-      {Key? key, required this.toggleFavorite, required this.isFavorite})
+  const MealDetailsScreen({Key? key, required this.toggleFavorite, required this.isFavorite})
       : super(key: key);
 
   Widget buildSectionTitle(BuildContext context, String text) {
@@ -84,7 +85,7 @@ class MealDetailsScreen extends StatelessWidget {
                         ListTile(
                           leading: CircleAvatar(
                             backgroundColor:
-                                Theme.of(context).colorScheme.primary,
+                            Theme.of(context).colorScheme.primary,
                             child: Text("# ${index + 1}"),
                           ),
                           title: Text(selectedMeal.steps[index]),
@@ -99,7 +100,12 @@ class MealDetailsScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => toggleFavorite(mealId),
+        onPressed: () {
+          toggleFavorite(mealId);
+          Timer(const Duration(seconds: 2), () {
+            Navigator.of(context).pop(mealId);
+          });
+        },
         child: Icon(isFavorite(mealId) ? Icons.star : Icons.star_border),
       ),
     );
