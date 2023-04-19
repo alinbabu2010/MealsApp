@@ -71,7 +71,8 @@ jobs:
         id: yq
         uses: mikefarah/yq@master
         with:
-          cmd: yq -r .version pubspec.yaml > version.file
+          run: |
+            yq -r .version pubspec.yaml > version.file
             set /p VERSION=<version.file
             echo VERSION=%VERSION% >> %GITHUB_ENV%
       - name: Push to Releases
