@@ -28,7 +28,7 @@ jobs:
           _flutterVersion=$( yq read pubspec.yaml environment.flutter )
           echo "FLUTTER_VERSION=${_flutterVersion}" >> $GITHUB_ENV
       - name: Setup Flutter
-      - uses: subosito/flutter-action@v2.8.0
+        uses: subosito/flutter-action@v2.10.0
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           channel: 'stable'
@@ -68,10 +68,8 @@ jobs:
             build/app/outputs/bundle/release/
             build/ios/iphoneos/app.ipa
       - name: Get version
-        uses: mikefarah/yq@master
-        id: yq
-        with:
-          run: |
+        uses: tomasdedic/yq-action@1.4
+      - run: |
             yq -r .version pubspec.yaml > version.file
             set /p VERSION=<version.file
             echo VERSION=%VERSION% >> %GITHUB_ENV%
