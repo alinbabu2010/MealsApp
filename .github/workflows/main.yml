@@ -24,8 +24,7 @@ jobs:
       - name: Get Flutter version from pubspec
         run: |
           set -e
-          brew install yq
-          _flutterVersion=$( yq read pubspec.yaml environment.flutter )
+          _flutterVersion=$( yq -r .environment.flutter pubspec.yaml )
           echo "FLUTTER_VERSION=${_flutterVersion}" >> $GITHUB_ENV
       - name: Setup Flutter
         uses: subosito/flutter-action@v2.10.0
