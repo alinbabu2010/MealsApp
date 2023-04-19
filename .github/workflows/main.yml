@@ -22,7 +22,7 @@ jobs:
           distribution: 'zulu'
           java-version: '11'
       - name: Get Flutter version from pubspec
-      - run: |
+        run: |
           set -e
           brew install yq
           _flutterVersion=$( yq read pubspec.yaml environment.flutter )
@@ -34,10 +34,10 @@ jobs:
           channel: 'stable'
           architecture: x64
       - name: Generate Android and iOS build
-      - run: flutter pub get
-      - run: flutter build apk
-      - run: flutter build appbundle
-      - run: |
+        run: |
+          flutter pub get
+          flutter build apk
+          flutter build appbundle
           flutter build ios --no-codesign
           cd build/ios/iphoneos
           mkdir Payload
