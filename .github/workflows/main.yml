@@ -68,8 +68,8 @@ jobs:
             build/app/outputs/bundle/release/
             build/ios/iphoneos/app.ipa
       - name: Get version
-        id: yq
         uses: mikefarah/yq@master
+        id: yq
         with:
           run: |
             yq -r .version pubspec.yaml > version.file
