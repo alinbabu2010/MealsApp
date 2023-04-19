@@ -77,5 +77,5 @@ jobs:
         uses: ncipollo/release-action@v1.12.0
         with:
           artifacts: "**/*.aab,**/*.apk,**/*.ipa"
-          tag: v${{ VERSION }}
+          tag: v${{ env.VERSION }}
           token: ${{ secrets.ACCESS_TOKEN }}
