@@ -21,11 +21,19 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: '11'
+      - name: Get Flutter version from pubspec
+      - run: |
+          set -e
+          brew install yq
+          _flutterVersion=$( yq read pubspec.yaml environment.flutter )
+          echo "FLUTTER_VERSION=${_flutterVersion}" >> $GITHUB_ENV
+      - name: Setup Flutter
       - uses: subosito/flutter-action@v2.8.0
         with:
-          flutter-version: '3.7.3'
+          flutter-version: ${{ env.FLUTTER_VERSION }}
           channel: 'stable'
           architecture: x64
+      - name: Generate Android and iOS build
       - run: flutter pub get
       - run: flutter build apk
       - run: flutter build appbundle
@@ -55,9 +63,20 @@ jobs:
         uses: actions/download-artifact@v3.0.2
         with:
           name: builds
+          path: |
+            build/app/outputs/flutter-apk/
+            build/app/outputs/bundle/release/
+            build/ios/iphoneos/app.ipa
+      - name: Get version
+        id: yq
+        uses: mikefarah/yq@master
+        with:
+          cmd: yq -r .version pubspec.yaml > version.file
+            set /p VERSION=<version.file
+            echo VERSION=%VERSION% >> %GITHUB_ENV%
       - name: Push to Releases
         uses: ncipollo/release-action@v1.12.0
         with:
           artifacts: "**/*.aab,**/*.apk,**/*.ipa"
-          tag: v1.0.0
+          tag: v${{ VERSION }}
           token: ${{ secrets.ACCESS_TOKEN }}
