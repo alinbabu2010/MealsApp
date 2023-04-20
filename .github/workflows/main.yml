@@ -62,7 +62,7 @@ jobs:
       - name: Get version
         run: |
           set -e
-          _version= cut -c 1-5 <<< $( yq -r .version pubspec.yaml )
+          _version=$(yq -r .version pubspec.yaml | cut -c 1-5)
           echo "VERSION=${_version}" >> $GITHUB_ENV
       - name: Download artifact
         uses: actions/download-artifact@v3.0.2
