@@ -52,12 +52,15 @@ class MealDetailsScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(
-              height: mediaQuery.size.height * 0.4,
-              width: double.infinity,
-              child: Image.network(
-                selectedMeal.imageUrl,
-                fit: BoxFit.cover,
+            Hero(
+              tag: selectedMeal.imageUrl,
+              child: SizedBox(
+                height: mediaQuery.size.height * 0.4,
+                width: double.infinity,
+                child: Image.network(
+                  selectedMeal.imageUrl,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
             buildSectionTitle(context, ingredients),

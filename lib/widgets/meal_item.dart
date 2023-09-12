@@ -91,13 +91,16 @@ class MealItem extends StatelessWidget {
           children: [
             Stack(
               children: [
-                ClipRRect(
-                  borderRadius: mealItemClipRRectBorderRadius,
-                  child: Image.network(
-                    imageUrl,
-                    height: mealItemImageHeight,
-                    width: double.infinity,
-                    fit: BoxFit.cover,
+                Hero(
+                  tag: imageUrl,
+                  child: ClipRRect(
+                    borderRadius: mealItemClipRRectBorderRadius,
+                    child: Image.network(
+                      imageUrl,
+                      height: mealItemImageHeight,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
                 Positioned(
